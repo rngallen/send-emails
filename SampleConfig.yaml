@@ -1,0 +1,9 @@
+EMAIL_HOST:
+  USER: "sample@gmail.com"
+  PASSWORD: "123456"
+  SERVER: "smtp.gmail.com"
+  PORT: "587"
+
+EMAIL:
+  TO: "info@gmail.com"
+  MESSAGE: "Hello this is a tesing Email"
