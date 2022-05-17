@@ -1,4 +1,4 @@
-package smtpMail
+package goSmtp
 
 import (
 	"log"
@@ -17,24 +17,25 @@ func SendStmp() {
 	toEmails := config.Config("EMAIL.TO")
 	to := []string{toEmails}
 
+	// Email Body
+	msg := config.Config("EMAIL.BODY")
+	message := []byte(msg)
+
 	// smtp server configuration
 	smtpHost := config.Config("EMAIL_HOST.SERVER")
 	smtpPort := config.Config("EMAIL_HOST.PORT")
-
-	msg := config.Config("EMAIL.MESSAGE")
 
 	// Authenticate
 	auth := smtp.PlainAuth("", from, password, smtpHost)
 
 	// Sending Email
-	message := []byte(msg)
 
 	err := smtp.SendMail(smtpHost+":"+smtpPort, auth, from, to, message)
 	if err != nil {
 		log.Println(err)
-		return
+		// return
+	} else {
+		log.Printf("Email have been sent successfully")
 	}
-
-	log.Printf("Email have been sent successfully")
 
 }
